@@ -503,31 +503,32 @@
                     </div>
                 </div>
 
-                 <!-- ชิ้นที่ 1: วิดีโอ YouTube ของคุณ -->
-                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10"
+                <!-- ชิ้นที่ 4: แบบทำเป็นปุ่มลิงก์ไปยัง Facebook Reel -->
+                <a href="https://www.facebook.com/reel/24130453133249118" target="_blank"
+                    class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[9/16] md:aspect-[4/3] shadow-lg border border-white/10 block cursor-pointer"
                     data-category="video" data-aos="fade-up">
 
-                    <!-- ตัววิดีโอ YouTube -->
-                    <iframe id="yt-player-0" class="yt-iframe w-full h-full relative z-0 "
-                        src="https://www.youtube.com/embed/iJolrhCmms"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
+                    <!-- รูปภาพหน้าปก (ดึงภาพจากโฟลเดอร์ images ของคุณเอง) -->
+                    <img src="images/525740845_1349378083855472_4988593617756336644_n.jpg" alt="Facebook Reel Cover"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
 
-                    <!-- แถบ Overlay ที่จะโชว์ตอนเอาเมาส์ชี้ -->
-                    <!-- หมายเหตุ: pointer-events-none จะทำให้เราคลิกทะลุข้อความไปกดปุ่ม Play วิดีโอได้ -->
-                    <div id="yt-overlay-0"
-                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
-                        <span class="text-brand-purple text-sm font-bold mb-2"><i class="fab fa-youtube mr-1"></i>
-                            กดปุ่มกลางเพื่อเล่น</span>
-                        <h3 class="text-2xl font-bold text-white">งาน Motion
-                            YOUNGOHM - เจิดจรัส (VER.ไทบ้าน) Cover by Bookkee</h3>
+                    <!-- แถบ Overlay พื้นหลังดำๆ ด้านล่าง -->
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 z-10">
+                        <span class="text-[#1877F2] text-sm font-bold mb-2"><i class="fab fa-facebook mr-1"></i>
+                            คลิกเพื่อดูบน Facebook</span>
+                        <h3 class="text-2xl font-bold text-white">ใส่ชื่อคลิปของคุณที่นี่</h3>
                         <p class="text-gray-300 text-sm mt-2">หมวดหมู่วิดีโอ</p>
                     </div>
 
-
-                </div>
+                    <!-- ปุ่ม Play ตรงกลางให้ดูเหมือนวิดีโอ -->
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                        <div
+                            class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-[#1877F2] transition-colors duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                            <i class="fas fa-play text-white text-2xl ml-1"></i>
+                        </div>
+                    </div>
+                </a>
 
             </div>
         </div>
