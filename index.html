@@ -255,11 +255,7 @@
     <section id="home" class="min-h-screen flex items-center pt-20 relative">
         <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center">
             <div class="order-2 lg:order-1 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
-                <div
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-brand-cyan/30 text-brand-cyan text-sm font-semibold mb-6">
-                    <span class="w-2 h-2 rounded-full bg-brand-cyan animate-ping"></span>
-                    <span id="typedRole">Graphic Designer & Digital Artist</span>
-                </div>
+
                 <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
                     เปลี่ยนจินตนาการ <br>
                     ให้เป็น <span class="text-gradient">ผลงานดิจิทัล</span>
@@ -285,8 +281,7 @@
                     <div class="absolute inset-4 border border-brand-purple/40 rounded-full animate-pulse-slow"></div>
                     <!-- Image -->
                     <div class="absolute inset-8 rounded-full overflow-hidden border-4 border-brand-card shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            alt="Profile"
+                        <img src="images/A7S04581.jpg" alt="Profile"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-brand-pink/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -446,24 +441,30 @@
             <!-- Grid ผลงาน -->
             <div class="grid md:grid-cols-2 gap-8">
 
-                <!-- ชิ้นที่ 1: วิดีโอ YouTube (ใช้ API ตรวจจับ Play/Pause) -->
-                <!-- กำหนดรหัสวิดีโอตรง data-video-id -->
-                <div class="portfolio-item yt-container group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10"
-                    data-category="video" data-video-id="Pua7i2CYXGk" data-aos="fade-up">
+                <!-- ชิ้นที่ 1: วิดีโอ YouTube ของคุณ -->
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10"
+                    data-category="video" data-aos="fade-up">
 
-                    <!-- โค้ด YouTube IFrame API จะถูกดึงมาใส่ตรงนี้อัตโนมัติ -->
+                    <!-- ตัววิดีโอ YouTube -->
+                    <iframe id="yt-player-0" class="yt-iframe w-full h-full relative z-0 "
+                        src="https://www.youtube.com/embed/MucBW8knTTA?enablejsapi=1&modestbranding=1&rel=0"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
 
-                    <!-- Overlay Cover -->
-                    <!-- หมายเหตุ: ผมใส่ id อัตโนมัติในสคริปต์เพื่อให้ระบบรู้ว่าต้องซ่อนตัวไหนเวลาเล่น -->
+                    <!-- แถบ Overlay ที่จะโชว์ตอนเอาเมาส์ชี้ -->
+                    <!-- หมายเหตุ: pointer-events-none จะทำให้เราคลิกทะลุข้อความไปกดปุ่ม Play วิดีโอได้ -->
                     <div id="yt-overlay-0"
                         class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
                         <span class="text-brand-purple text-sm font-bold mb-2"><i class="fab fa-youtube mr-1"></i>
                             กดปุ่มกลางเพื่อเล่น</span>
-                        <h3 class="text-2xl font-bold text-white">ผลงานวิดีโอของคุณ</h3>
-                        <p class="text-gray-300 text-sm mt-2">วิดีโอโปรดักชั่น</p>
+                        <h3 class="text-2xl font-bold text-white">งาน Motion
+                            YOUNGOHM - เจิดจรัส (VER.ไทบ้าน) Cover by Bookkee</h3>
+                        <p class="text-gray-300 text-sm mt-2">หมวดหมู่วิดีโอ</p>
                     </div>
-                </div>
 
+                </div>
                 <!-- ชิ้นที่ 2: ภาพผลงาน -->
                 <div class="portfolio-item image-trigger group relative overflow-hidden rounded-3xl aspect-[4/3] cursor-pointer shadow-lg border border-white/10"
                     data-category="design"
@@ -474,7 +475,7 @@
                         alt="Work"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
 
-                    <div
+                    <div id="yt-overlay-1"
                         class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
                         <span class="text-brand-pink text-sm font-bold mb-2"><i class="fas fa-search-plus mr-1"></i>
                             กดเพื่อขยาย</span>
@@ -493,7 +494,7 @@
                         alt="Work"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
 
-                    <div
+                    <div id="yt-overlay-2"
                         class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
                         <span class="text-brand-cyan text-sm font-bold mb-2"><i class="fas fa-search-plus mr-1"></i>
                             กดเพื่อขยาย</span>
@@ -502,20 +503,30 @@
                     </div>
                 </div>
 
-                <!-- ชิ้นที่ 4: วิดีโอ YouTube (ตัวอย่างที่ 2) -->
-                <!-- กำหนดรหัสวิดีโอตรง data-video-id -->
-                <div class="portfolio-item yt-container group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10"
-                    data-category="video" data-video-id="dQw4w9WgXcQ" data-aos="fade-up" data-aos-delay="100">
+                 <!-- ชิ้นที่ 1: วิดีโอ YouTube ของคุณ -->
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10"
+                    data-category="video" data-aos="fade-up">
 
-                    <!-- โค้ด YouTube IFrame API จะถูกดึงมาใส่ตรงนี้อัตโนมัติ -->
+                    <!-- ตัววิดีโอ YouTube -->
+                    <iframe id="yt-player-0" class="yt-iframe w-full h-full relative z-0 "
+                        src="https://www.youtube.com/embed/iJolrhCmms"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
 
-                    <div id="yt-overlay-1"
+                    <!-- แถบ Overlay ที่จะโชว์ตอนเอาเมาส์ชี้ -->
+                    <!-- หมายเหตุ: pointer-events-none จะทำให้เราคลิกทะลุข้อความไปกดปุ่ม Play วิดีโอได้ -->
+                    <div id="yt-overlay-0"
                         class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
                         <span class="text-brand-purple text-sm font-bold mb-2"><i class="fab fa-youtube mr-1"></i>
                             กดปุ่มกลางเพื่อเล่น</span>
-                        <h3 class="text-2xl font-bold text-white">Sample Video 2</h3>
-                        <p class="text-gray-300 text-sm mt-2">มิวสิควิดีโอ</p>
+                        <h3 class="text-2xl font-bold text-white">งาน Motion
+                            YOUNGOHM - เจิดจรัส (VER.ไทบ้าน) Cover by Bookkee</h3>
+                        <p class="text-gray-300 text-sm mt-2">หมวดหมู่วิดีโอ</p>
                     </div>
+
+
                 </div>
 
             </div>
@@ -528,20 +539,24 @@
         </div>
         <div class="max-w-4xl mx-auto px-6 text-center" data-aos="zoom-in">
             <h2 class="text-4xl md:text-5xl font-bold mb-6">Let's Work <span class="text-gradient">Together</span></h2>
-            <p class="text-gray-400 mb-12">สนใจร่วมงานหรือสอบถามรายละเอียด ติดต่อได้ผ่านช่องทางด้านล่างครับ</p>
+            <p class="text-gray-400 mb-12">ติดตามผลงาน หรือ ติดต่องานผ่านช่องทางด้านล่างครับ</p>
 
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#"
+                <!-- ใส่ลิ้งก์ Discord ของคุณตรงคำว่า ใส่ลิ้งก์ที่นี่ -->
+                <a href="https://discord.com/users/614419131512389642" target="_blank"
                     class="px-8 py-4 rounded-full bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold transition-all hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(88,101,242,0.4)] flex items-center gap-3">
                     <i class="fab fa-discord text-xl"></i> Discord
                 </a>
-                <a href="#"
+
+                <!-- ใส่ลิ้งก์ Facebook ของคุณตรงคำว่า ใส่ลิ้งก์ที่นี่ -->
+                <a href="https://www.facebook.com/NPXS0123zz/" target="_blank"
                     class="px-8 py-4 rounded-full bg-[#1877F2] hover:bg-[#166FE5] text-white font-bold transition-all hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(24,119,242,0.4)] flex items-center gap-3">
                     <i class="fab fa-facebook text-xl"></i> Facebook
                 </a>
-                <a href="#"
-                    class="px-8 py-4 rounded-full text-white font-bold transition-all hover:-translate-y-1 flex items-center gap-3"
-                    style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); box-shadow: 0 10px 20px rgba(220,39,67,0.3);">
+
+                <!-- ใส่ลิ้งก์ Instagram ของคุณตรงคำว่า ใส่ลิ้งก์ที่นี่ -->
+                <a href="https://www.instagram.com/ntp_rmx/" target="_blank"
+                    class="px-8 py-4 rounded-full bg-gradient-to-tr from-[#FD1D1D] via-[#E1306C] to-[#833AB4] hover:opacity-90 text-white font-bold transition-all hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(225,48,108,0.4)] flex items-center gap-3">
                     <i class="fab fa-instagram text-xl"></i> Instagram
                 </a>
             </div>
@@ -556,48 +571,31 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // === YouTube IFrame API Setup (เล่นปุ๊บ ซ่อนบาร์ / หยุดปุ๊บ โชว์บาร์) ===
-        function onYouTubeIframeAPIReady() {
-            document.querySelectorAll('.yt-container').forEach((container, index) => {
-                let videoId = container.getAttribute('data-video-id');
-                let playerId = 'yt-player-id-' + index;
-                let overlayId = 'yt-overlay-' + index;
+        // === YouTube IFrame API Setup ===
+        window.onYouTubeIframeAPIReady = function () {
+            document.querySelectorAll('.yt-iframe').forEach((iframe) => {
+                let playerId = iframe.id;
+                // Find the overlay specifically within the same portfolio-item container
+                let container = iframe.closest('.portfolio-item');
+                let overlay = container.querySelector('[id^="yt-overlay-"]');
 
-                // สร้าง Div เปล่าๆ ให้ API มาสิงร่าง
-                let playerDiv = document.createElement('div');
-                playerDiv.id = playerId;
-                playerDiv.className = "w-full h-full relative z-0";
-                container.insertBefore(playerDiv, container.firstChild);
-
-                new YT.Player(playerId, {
-                    height: '100%',
-                    width: '100%',
-                    videoId: videoId,
-                    playerVars: {
-                        'rel': 0, // ไม่โชว์คลิปแนะนำจากช่องอื่นตอนจบ
-                        'modestbranding': 1
-                    },
-                    events: {
-                        'onStateChange': function (event) {
-                            let overlay = document.getElementById(overlayId);
-                            if (!overlay) return;
-
-                            // event.data === 1 คือวิดีโอกำลังเล่น
-                            if (event.data === 1) {
-                                overlay.classList.remove('group-hover:opacity-100'); // ลบคำสั่ง Hover ทิ้ง
-                                overlay.style.opacity = '0'; // บังคับซ่อนทันที
-                            }
-                            // event.data === 2 (หยุดชั่วคราว) หรือ 0 (เล่นจบแล้ว)
-                            else if (event.data === 2 || event.data === 0) {
-                                overlay.style.opacity = ''; // เคลียร์สไตล์บังคับ
-                                overlay.classList.add('group-hover:opacity-100'); // โชว์ Hover ตามปกติ
+                if (playerId && overlay) {
+                    new YT.Player(playerId, {
+                        events: {
+                            'onStateChange': function (event) {
+                                if (event.data === 1) { // 1 = Playing
+                                    overlay.classList.remove('group-hover:opacity-100');
+                                    overlay.style.opacity = '0';
+                                } else if (event.data === 2 || event.data === 0) { // 2 = Paused, 0 = Ended
+                                    overlay.style.opacity = '';
+                                    overlay.classList.add('group-hover:opacity-100');
+                                }
                             }
                         }
-                    }
-                });
+                    });
+                }
             });
-        }
-
+        };
 
         // 1. Preloader
         window.addEventListener('load', () => {
@@ -645,20 +643,7 @@
             document.getElementById('mobileMenu').classList.toggle('hidden');
         });
 
-        // 5. Typewriter Effect
-        const typedText = document.getElementById('typedRole');
-        const roles = ["Graphic Designer", "Video Editor", "AI Artist", "Content Creator"];
-        let roleIdx = 0, charIdx = 0, isDeleting = false;
-        function type() {
-            if (!typedText) return;
-            const current = roles[roleIdx];
-            typedText.textContent = isDeleting ? current.substring(0, charIdx--) : current.substring(0, charIdx++);
-            let speed = isDeleting ? 50 : 100;
-            if (!isDeleting && charIdx === current.length + 1) { speed = 2000; isDeleting = true; }
-            else if (isDeleting && charIdx === 0) { isDeleting = false; roleIdx = (roleIdx + 1) % roles.length; speed = 500; }
-            setTimeout(type, speed);
-        }
-        type();
+
 
         // 6. 3D Tilt Card
         document.querySelectorAll('.tilt-card').forEach(card => {
