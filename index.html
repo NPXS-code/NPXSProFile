@@ -257,12 +257,11 @@
             <div class="order-2 lg:order-1 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
 
                 <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
-                    เปลี่ยนจินตนาการ <br>
-                    ให้เป็น <span class="text-gradient">ผลงานดิจิทัล</span>
+                    สวัสดีครับ <br>
+                    ผม<span class="text-gradient">Dream (NPXS)</span>
                 </h1>
                 <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto lg:mx-0">
-                    สวัสดีครับ ผม Dream (NPXS) หลงใหลในการออกแบบกราฟิก สร้างสรรค์โลโก้ สื่อมัลติมีเดีย และการใช้ AI
-                    ช่วยออกแบบเพื่อถ่ายทอดเรื่องราวอย่างมีเอกลักษณ์
+                    อายุ 19 ปี ผู้มีความหลงใหลในการออกแบบกราฟิก สร้างสรรค์โลโก้ สื่อมัลติมีเดีย
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                     <a href="#works"
@@ -425,19 +424,6 @@
             <h2 class="text-4xl font-bold mb-10 text-center" data-aos="fade-up">Selected <span
                     class="text-gradient">Works</span></h2>
 
-            <!-- Filters -->
-            <div class="flex flex-wrap justify-center gap-3 mb-12" data-aos="fade-up" data-aos-delay="100">
-                <button
-                    class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-white/10 text-white hover:bg-brand-pink transition-colors active-filter"
-                    data-filter="all">All</button>
-                <button
-                    class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-transparent border border-white/10 text-gray-400 hover:text-white hover:border-brand-pink transition-colors"
-                    data-filter="design">Design & Arts</button>
-                <button
-                    class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-transparent border border-white/10 text-gray-400 hover:text-white hover:border-brand-purple transition-colors"
-                    data-filter="video">Video & YouTube</button>
-            </div>
-
             <!-- Grid ผลงาน -->
             <div class="grid md:grid-cols-2 gap-8">
 
@@ -459,51 +445,86 @@
                         class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
                         <span class="text-brand-purple text-sm font-bold mb-2"><i class="fab fa-youtube mr-1"></i>
                             กดปุ่มกลางเพื่อเล่น</span>
-                        <h3 class="text-2xl font-bold text-white">งาน Motion
+                        <h3 class="text-2xl font-bold text-white">งาน Motion และ Graphic Design
                             YOUNGOHM - เจิดจรัส (VER.ไทบ้าน) Cover by Bookkee</h3>
                         <p class="text-gray-300 text-sm mt-2">หมวดหมู่วิดีโอ</p>
                     </div>
 
                 </div>
-                <!-- ชิ้นที่ 2: ภาพผลงาน -->
-                <div class="portfolio-item image-trigger group relative overflow-hidden rounded-3xl aspect-[4/3] cursor-pointer shadow-lg border border-white/10"
-                    data-category="design"
-                    data-full-image="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-                    data-aos="fade-up" data-aos-delay="100">
+                <!-- ชิ้นที่ 2: วิดีโอ YouTube ของคุณ -->
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10"
+                    data-category="video" data-aos="fade-up">
 
-                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                        alt="Work"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <!-- ตัววิดีโอ YouTube -->
+                    <iframe id="yt-player-0" class="yt-iframe w-full h-full relative z-0 "
+                        src="https://www.youtube.com/embed/taHO5FKRs74?si=jYBBZ-z7rhFrqhQK" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
 
-                    <div id="yt-overlay-1"
+                    <!-- แถบ Overlay ที่จะโชว์ตอนเอาเมาส์ชี้ -->
+                    <!-- หมายเหตุ: pointer-events-none จะทำให้เราคลิกทะลุข้อความไปกดปุ่ม Play วิดีโอได้ -->
+                    <div id="yt-overlay-0"
                         class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
-                        <span class="text-brand-pink text-sm font-bold mb-2"><i class="fas fa-search-plus mr-1"></i>
-                            กดเพื่อขยาย</span>
-                        <h3 class="text-2xl font-bold text-white">Digital Graphic Coin</h3>
-                        <p class="text-gray-300 text-sm mt-2">ออกแบบกราฟิก</p>
+                        <span class="text-brand-purple text-sm font-bold mb-2"><i class="fab fa-youtube mr-1"></i>
+                            กดปุ่มกลางเพื่อเล่น</span>
+                        <h3 class="text-2xl font-bold text-white">งาน Videography
+                            พิธีมอบประกาศนียบัตร Cambridge 2026</h3>
+                        <p class="text-gray-300 text-sm mt-2">หมวดหมู่วิดีโอ</p>
                     </div>
+
                 </div>
+                <!-- ชิ้นที่ 3: วิดีโอ YouTube ของคุณ -->
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10"
+                    data-category="video" data-aos="fade-up">
 
-                <!-- ชิ้นที่ 3: ภาพผลงาน -->
-                <div class="portfolio-item image-trigger group relative overflow-hidden rounded-3xl aspect-[4/3] cursor-pointer shadow-lg border border-white/10"
-                    data-category="design"
-                    data-full-image="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-                    data-aos="fade-up">
+                    <!-- ตัววิดีโอ YouTube -->
+                    <iframe id="yt-player-0" class="yt-iframe w-full h-full relative z-0 "
+                        src="https://www.youtube.com/embed/UXU_Q5jEmm4?si=QvPN-yEYXg3L7uK2" title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
 
-                    <img src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                        alt="Work"
+                    <!-- แถบ Overlay ที่จะโชว์ตอนเอาเมาส์ชี้ -->
+                    <!-- หมายเหตุ: pointer-events-none จะทำให้เราคลิกทะลุข้อความไปกดปุ่ม Play วิดีโอได้ -->
+                    <div id="yt-overlay-0"
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
+                        <span class="text-brand-purple text-sm font-bold mb-2"><i class="fab fa-youtube mr-1"></i>
+                            กดปุ่มกลางเพื่อเล่น</span>
+                        <h3 class="text-2xl font-bold text-white">งาน Motion Sound Engineering และ Remixer
+                            เลิกกั๊กแล้วรักก่อน (RED FLAG) - NEW CHAYAPAK ทูลกระหม่อม Cover [ NTP RMX ] Ver. 3
+                            ช่าพาเพลิน </h3>
+                        <p class="text-gray-300 text-sm mt-2">หมวดหมู่วิดีโอ</p>
+                    </div>
+
+                </div>
+                <!-- ชิ้นที่ 4: ภาพผลงาน -->
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10"
+                    data-category="design" data-aos="fade-up">
+
+                    <img src="images/NPXS25580125_43.jpg" alt="Work"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
 
+                    <!-- พื้นหลัง Overlay ตอนเอาเมาส์ชี้ -->
                     <div id="yt-overlay-2"
-                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
-                        <span class="text-brand-cyan text-sm font-bold mb-2"><i class="fas fa-search-plus mr-1"></i>
-                            กดเพื่อขยาย</span>
-                        <h3 class="text-2xl font-bold text-white">Character Portraits</h3>
-                        <p class="text-gray-300 text-sm mt-2">AI Generated Art</p>
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 z-10">
+
+                        <h3 class="text-2xl font-bold text-white mb-1">Photography</h3>
+                        <p class="text-gray-300 text-sm mb-4">Photography</p>
+
+                        <!-- คอนเทนเนอร์ปุ่ม -->
+                        <div class="flex">
+                            <!-- ปุ่มลิงก์ไปยังเว็บไซต์ -->
+                            <a href="https://ntpremix.x2finity.xyz/" target="_blank"
+                                class="px-5 py-2 bg-brand-pink text-white text-sm font-semibold rounded-full shadow-[0_0_15px_rgba(244,63,94,0.4)] hover:bg-brand-pink/80 transition-all flex items-center hover:-translate-y-1">
+                                <i class="fas fa-external-link-alt mr-2"></i> ดูผลงานเพิ่ม
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <!-- ชิ้นที่ 4: แบบทำเป็นปุ่มลิงก์ไปยัง Facebook Reel -->
+                <!-- ชิ้นที่ 5: แบบทำเป็นปุ่มลิงก์ไปยัง Facebook Reel -->
                 <a href="https://www.facebook.com/reel/24130453133249118" target="_blank"
                     class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[9/16] md:aspect-[4/3] shadow-lg border border-white/10 block cursor-pointer"
                     data-category="video" data-aos="fade-up">
@@ -517,7 +538,8 @@
                         class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 z-10">
                         <span class="text-[#1877F2] text-sm font-bold mb-2"><i class="fab fa-facebook mr-1"></i>
                             คลิกเพื่อดูบน Facebook</span>
-                        <h3 class="text-2xl font-bold text-white">ใส่ชื่อคลิปของคุณที่นี่</h3>
+                        <h3 class="text-2xl font-bold text-white">งาน Motion,Edit Video,Record voice,Edit voice นโยบาย
+                            อวท.วสวธ.2569 1️⃣ เบอร์ 1 นางสาวปาณชีวา เปรมจันทร์วงษ์ ปวส.1/4 </h3>
                         <p class="text-gray-300 text-sm mt-2">หมวดหมู่วิดีโอ</p>
                     </div>
 
