@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPXS | Creative Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Prompt -->
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Prompt', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            dark: '#09090b',
+                            card: '#18181b',
+                            pink: '#f43f5e',
+                            cyan: '#06b6d4',
+                            purple: '#8b5cf6'
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base & Scrollbar */
+        html { scroll-behavior: smooth; }
+        body { background-color: #09090b; color: #fafafa; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f43f5e; }
+
+        /* Preloader */
+        #preloader {
+            position: fixed; inset: 0; background: #09090b; z-index: 999999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        .loader-circle {
+            width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: #06b6d4; border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(24, 24, 27, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Text Gradient */
+        .text-gradient {
+            background: linear-gradient(135deg, #f43f5e, #8b5cf6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientMove 5s ease infinite;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 3D Tilt & Cards */
+        .tilt-card { transform-style: preserve-3d; transition: transform 0.1s ease; }
+        .bento-card {
+            background: linear-gradient(145deg, rgba(24,24,27,0.8) 0%, rgba(9,9,11,1) 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        .bento-card:hover { border-color: rgba(6, 182, 212, 0.4); transform: translateY(-5px); }
+
+        /* Custom Cursor */
+        @media (min-width: 1024px) {
+            #cursor-dot { width: 8px; height: 8px; background: #06b6d4; position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s; }
+            #cursor-outline { width: 40px; height: 40px; border: 1px solid rgba(244, 63, 94, 0.5); position: fixed; border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: 0.15s ease-out; }
+        }
+        
+        /* Portfolio Filter */
+        .portfolio-item { transition: all 0.4s ease; display: block; }
+        .portfolio-item.hide { display: none; }
+    </style>
+</head>
+<body class="font-sans selection:bg-brand-pink selection:text-white relative">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-circle"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot" class="hidden lg:block shadow-[0_0_10px_#06b6d4]"></div>
+    <div id="cursor-outline" class="hidden lg:block shadow-[0_0_20px_rgba(244,63,94,0.3)]"></div>
+
+    <!-- Image Modal (Lightbox) -->
+    <div id="imageModal" class="fixed inset-0 z-[99999] bg-black/95 hidden flex justify-center items-center opacity-0 transition-opacity duration-300">
+        <button id="closeModal" class="absolute top-6 right-6 md:top-10 md:right-10 text-white text-4xl hover:text-brand-pink transition-colors focus:outline-none">&times;</button>
+        <img id="modalImage" src="" alt="Full Screen" class="max-w-[90%] max-h-[90vh] object-contain rounded-lg shadow-2xl scale-95 transition-transform duration-300">
+    </div>
+
+    <!-- Background Glowing Blobs -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-brand-purple/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
+        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-brand-cyan/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
+        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-brand-pink/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass py-4 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="text-2xl font-extrabold tracking-tighter">
+                <span class="text-brand-cyan">NPXS</span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">หน้าแรก</a>
+                <a href="#expertise" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">ทักษะ</a>
+                <a href="#works" class="text-gray-300 hover:text-white transition-colors text-sm font-medium">ผลงาน</a>
+                <a href="#contact" class="px-5 py-2 bg-white/5 border border-white/10 rounded-full text-sm font-medium hover:bg-brand-pink hover:border-brand-pink transition-all">ติดต่อพูดคุย</a>
+            </div>
+            <button id="mobileMenuBtn" class="md:hidden text-white text-2xl focus:outline-none"><i class="fas fa-bars"></i></button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden absolute top-full left-0 w-full glass border-t border-white/10 flex flex-col p-4 space-y-4 text-center">
+            <a href="#home" class="text-gray-300">หน้าแรก</a>
+            <a href="#expertise" class="text-gray-300">ทักษะ</a>
+            <a href="#works" class="text-gray-300">ผลงาน</a>
+            <a href="#contact" class="text-brand-pink font-semibold">ติดต่อพูดคุย</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20 relative">
+        <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center">
+            <div class="order-2 lg:order-1 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-brand-cyan/30 text-brand-cyan text-sm font-semibold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-cyan animate-ping"></span>
+                    <span id="typedRole">Graphic Designer & Digital Artist</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
+                    เปลี่ยนจินตนาการ <br>
+                    ให้เป็น <span class="text-gradient">ผลงานดิจิทัล</span>
+                </h1>
+                <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto lg:mx-0">
+                    สวัสดีครับ ผม Dream (NPXS) หลงใหลในการออกแบบกราฟิก สร้างสรรค์โลโก้ สื่อมัลติมีเดีย และการใช้ AI ช่วยออกแบบเพื่อถ่ายทอดเรื่องราวอย่างมีเอกลักษณ์
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#works" class="px-8 py-4 bg-brand-pink text-white rounded-full font-semibold hover:bg-opacity-90 transition-all shadow-[0_0_20px_rgba(244,63,94,0.4)] flex items-center justify-center gap-2 hover:-translate-y-1">
+                        ดูผลงาน <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="order-1 lg:order-2 flex justify-center" data-aos="zoom-in" data-aos-duration="1200">
+                <div class="relative w-72 h-72 md:w-96 md:h-96 tilt-card group cursor-pointer">
+                    <!-- Rotating rings -->
+                    <div class="absolute inset-0 border border-dashed border-brand-cyan/40 rounded-full animate-[spin_15s_linear_infinite]"></div>
+                    <div class="absolute inset-4 border border-brand-purple/40 rounded-full animate-pulse-slow"></div>
+                    <!-- Image -->
+                    <div class="absolute inset-8 rounded-full overflow-hidden border-4 border-brand-card shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Profile" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-pink/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise & Tools Section -->
+    <section id="expertise" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16 text-center" data-aos="fade-up">
+                <h2 class="text-4xl font-bold mb-4">Professional <span class="text-gradient">Skills</span></h2>
+                <p class="text-gray-400">ทักษะ ความเชี่ยวชาญ และซอฟต์แวร์ที่ใช้สร้างสรรค์ผลงาน</p>
+            </div>
+            
+            <!-- Bento Grid Skills -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Skill 1 -->
+                <div class="bento-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 rounded-xl bg-brand-cyan/10 text-brand-cyan flex items-center justify-center text-2xl mb-6"><i class="fas fa-pen-nib"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Graphic Design</h3>
+                    <p class="text-gray-400 text-sm">ออกแบบอัตลักษณ์องค์กร โลโก้ และสื่อดิจิทัลที่สื่อสารอย่างมีสไตล์</p>
+                </div>
+                <!-- Skill 2 -->
+                <div class="bento-card p-8 rounded-3xl md:col-span-2 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-xl bg-brand-purple/10 text-brand-purple flex items-center justify-center text-2xl mb-6"><i class="fas fa-video"></i></div>
+                        <h3 class="text-xl font-bold mb-3">Videography & Motion</h3>
+                        <p class="text-gray-400 text-sm max-w-md">บันทึกภาพเคลื่อนไหว ถ่ายทำวิดีโอคุณภาพโปรดักชั่น ตัดต่อสื่อมัลติมีเดีย และสร้างสรรค์แอนิเมชัน</p>
+                    </div>
+                    <i class="fas fa-film absolute -right-4 -bottom-4 text-9xl text-white/5 group-hover:scale-110 transition-transform"></i>
+                </div>
+                <!-- Skill 3 -->
+                <div class="bento-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 rounded-xl bg-brand-pink/10 text-brand-pink flex items-center justify-center text-2xl mb-6"><i class="fas fa-camera"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Photography</h3>
+                    <p class="text-gray-400 text-sm">ถ่ายภาพและจัดแสงเพื่อนำเสนอเรื่องราวด้วยภาพที่โดดเด่น</p>
+                </div>
+                <!-- Skill 4 -->
+                <div class="bento-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-400/10 text-emerald-400 flex items-center justify-center text-2xl mb-6"><i class="fas fa-sliders-h"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Sound Engineering</h3>
+                    <p class="text-gray-400 text-sm">มิกซ์และมาสเตอริ่งเสียง ออกแบบระบบเสียงที่สมบูรณ์แบบ</p>
+                </div>
+                 <!-- Skill 5 -->
+                 <div class="bento-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center text-2xl mb-6"><i class="fas fa-compact-disc"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Remixer & Producer</h3>
+                    <p class="text-gray-400 text-sm">รีมิกซ์และโปรดิวซ์เพลงใหม่ สร้างสรรค์จังหวะสไตล์ที่ไม่เหมือนใคร</p>
+                </div>
+            </div>
+
+            <!-- Software Tools Section (เครื่องมือที่ใช้งานประจำ) -->
+            <div class="mt-24 pt-16 border-t border-white/5" data-aos="fade-up">
+                <h3 class="text-sm font-semibold text-gray-400 text-center mb-10 tracking-wider">เครื่องมือที่ใช้งานประจำ</h3>
+                <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+                    <!-- Photoshop -->
+                    <div class="flex flex-col items-center gap-3 group cursor-default">
+                        <div class="w-16 h-16 rounded-2xl border-[3px] border-[#31A8FF] bg-[#001E36] flex items-center justify-center text-3xl font-bold text-[#31A8FF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(49,168,255,0.2)]">Ps</div>
+                        <span class="text-xs md:text-sm text-gray-300 font-medium">Photoshop</span>
+                    </div>
+                    <!-- Lightroom Classic -->
+                    <div class="flex flex-col items-center gap-3 group cursor-default">
+                        <div class="w-16 h-16 rounded-2xl border-[3px] border-[#74C0FF] bg-[#001E36] flex items-center justify-center text-3xl font-bold text-[#74C0FF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(116,192,255,0.2)]">Lr</div>
+                        <span class="text-xs md:text-sm text-gray-300 font-medium">Lightroom Classic</span>
+                    </div>
+                    <!-- Illustrator -->
+                    <div class="flex flex-col items-center gap-3 group cursor-default">
+                        <div class="w-16 h-16 rounded-2xl border-[3px] border-[#FF9A00] bg-[#330000] flex items-center justify-center text-3xl font-bold text-[#FF9A00] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(255,154,0,0.2)]">Ai</div>
+                        <span class="text-xs md:text-sm text-gray-300 font-medium">Illustrator</span>
+                    </div>
+                    <!-- Premiere Pro -->
+                    <div class="flex flex-col items-center gap-3 group cursor-default">
+                        <div class="w-16 h-16 rounded-2xl border-[3px] border-[#E99EEF] bg-[#2E004F] flex items-center justify-center text-3xl font-bold text-[#E99EEF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(233,158,239,0.2)]">Pr</div>
+                        <span class="text-xs md:text-sm text-gray-300 font-medium">Premiere Pro</span>
+                    </div>
+                    <!-- After Effects -->
+                    <div class="flex flex-col items-center gap-3 group cursor-default">
+                        <div class="w-16 h-16 rounded-2xl border-[3px] border-[#9999FF] bg-[#00005C] flex items-center justify-center text-3xl font-bold text-[#9999FF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(153,153,255,0.2)]">Ae</div>
+                        <span class="text-xs md:text-sm text-gray-300 font-medium">After Effects</span>
+                    </div>
+                    <!-- FL Studio -->
+                    <div class="flex flex-col items-center gap-3 group cursor-default">
+                        <div class="w-16 h-16 rounded-2xl border-[3px] border-[#FF5B00] bg-black flex flex-col items-center justify-center text-[#FF5B00] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(255,91,0,0.2)]">
+                            <i class="fas fa-pepper-hot text-2xl"></i>
+                        </div>
+                        <span class="text-xs md:text-sm text-gray-300 font-medium">FL Studio</span>
+                    </div>
+                    <!-- Fender Studio Pro -->
+                    <div class="flex flex-col items-center gap-3 group cursor-default">
+                        <div class="w-16 h-16 rounded-2xl border-[3px] border-[#00FFFF] bg-black flex flex-col items-center justify-center text-[#00FFFF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(0,255,255,0.2)]">
+                            <i class="fas fa-guitar text-2xl"></i>
+                        </div>
+                        <span class="text-xs md:text-sm text-gray-300 font-medium">Fender Studio Pro</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="works" class="py-24 relative border-t border-white/5 bg-brand-card/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-10 text-center" data-aos="fade-up">Selected <span class="text-gradient">Works</span></h2>
+            
+            <!-- Filters -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-white/10 text-white hover:bg-brand-pink transition-colors active-filter" data-filter="all">All</button>
+                <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-transparent border border-white/10 text-gray-400 hover:text-white hover:border-brand-pink transition-colors" data-filter="design">Design & Arts</button>
+                <button class="filter-btn px-6 py-2 rounded-full text-sm font-medium bg-transparent border border-white/10 text-gray-400 hover:text-white hover:border-brand-purple transition-colors" data-filter="video">Video & YouTube</button>
+            </div>
+
+            <!-- Grid ผลงาน -->
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- ชิ้นที่ 1: วิดีโอ YouTube (ใช้ API ตรวจจับ Play/Pause) -->
+                <!-- กำหนดรหัสวิดีโอตรง data-video-id -->
+                <div class="portfolio-item yt-container group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10" data-category="video" data-video-id="Pua7i2CYXGk" data-aos="fade-up">
+                    
+                    <!-- โค้ด YouTube IFrame API จะถูกดึงมาใส่ตรงนี้อัตโนมัติ -->
+
+                    <!-- Overlay Cover -->
+                    <!-- หมายเหตุ: ผมใส่ id อัตโนมัติในสคริปต์เพื่อให้ระบบรู้ว่าต้องซ่อนตัวไหนเวลาเล่น -->
+                    <div id="yt-overlay-0" class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
+                        <span class="text-brand-purple text-sm font-bold mb-2"><i class="fab fa-youtube mr-1"></i> กดปุ่มกลางเพื่อเล่น</span>
+                        <h3 class="text-2xl font-bold text-white">ผลงานวิดีโอของคุณ</h3>
+                        <p class="text-gray-300 text-sm mt-2">วิดีโอโปรดักชั่น</p>
+                    </div>
+                </div>
+
+                <!-- ชิ้นที่ 2: ภาพผลงาน -->
+                <div class="portfolio-item image-trigger group relative overflow-hidden rounded-3xl aspect-[4/3] cursor-pointer shadow-lg border border-white/10" 
+                     data-category="design" 
+                     data-full-image="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+                     data-aos="fade-up" data-aos-delay="100">
+                    
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Work" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
+                        <span class="text-brand-pink text-sm font-bold mb-2"><i class="fas fa-search-plus mr-1"></i> กดเพื่อขยาย</span>
+                        <h3 class="text-2xl font-bold text-white">Digital Graphic Coin</h3>
+                        <p class="text-gray-300 text-sm mt-2">ออกแบบกราฟิก</p>
+                    </div>
+                </div>
+
+                 <!-- ชิ้นที่ 3: ภาพผลงาน -->
+                 <div class="portfolio-item image-trigger group relative overflow-hidden rounded-3xl aspect-[4/3] cursor-pointer shadow-lg border border-white/10" 
+                      data-category="design" 
+                      data-full-image="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+                      data-aos="fade-up">
+                    
+                    <img src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Work" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
+                        <span class="text-brand-cyan text-sm font-bold mb-2"><i class="fas fa-search-plus mr-1"></i> กดเพื่อขยาย</span>
+                        <h3 class="text-2xl font-bold text-white">Character Portraits</h3>
+                        <p class="text-gray-300 text-sm mt-2">AI Generated Art</p>
+                    </div>
+                </div>
+
+                <!-- ชิ้นที่ 4: วิดีโอ YouTube (ตัวอย่างที่ 2) -->
+                <!-- กำหนดรหัสวิดีโอตรง data-video-id -->
+                <div class="portfolio-item yt-container group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10" data-category="video" data-video-id="dQw4w9WgXcQ" data-aos="fade-up" data-aos-delay="100">
+                    
+                    <!-- โค้ด YouTube IFrame API จะถูกดึงมาใส่ตรงนี้อัตโนมัติ -->
+
+                    <div id="yt-overlay-1" class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
+                        <span class="text-brand-purple text-sm font-bold mb-2"><i class="fab fa-youtube mr-1"></i> กดปุ่มกลางเพื่อเล่น</span>
+                        <h3 class="text-2xl font-bold text-white">Sample Video 2</h3>
+                        <p class="text-gray-300 text-sm mt-2">มิวสิควิดีโอ</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative overflow-hidden bg-brand-card">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-pink via-brand-purple to-brand-cyan"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center" data-aos="zoom-in">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6">Let's Work <span class="text-gradient">Together</span></h2>
+            <p class="text-gray-400 mb-12">สนใจร่วมงานหรือสอบถามรายละเอียด ติดต่อได้ผ่านช่องทางด้านล่างครับ</p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#" class="px-8 py-4 rounded-full bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold transition-all hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(88,101,242,0.4)] flex items-center gap-3">
+                    <i class="fab fa-discord text-xl"></i> Discord
+                </a>
+                <a href="#" class="px-8 py-4 rounded-full bg-[#1877F2] hover:bg-[#166FE5] text-white font-bold transition-all hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(24,119,242,0.4)] flex items-center gap-3">
+                    <i class="fab fa-facebook text-xl"></i> Facebook
+                </a>
+                <a href="#" class="px-8 py-4 rounded-full text-white font-bold transition-all hover:-translate-y-1 flex items-center gap-3" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); box-shadow: 0 10px 20px rgba(220,39,67,0.3);">
+                    <i class="fab fa-instagram text-xl"></i> Instagram
+                </a>
+            </div>
+        </div>
+        
+        <div class="mt-24 text-center border-t border-white/5 pt-8 text-sm text-gray-500">
+            &copy; 2026 NPXS Dream Graphic Portfolio. All rights reserved.
+        </div>
+    </section>
+
+    <!-- AOS Script for Animations -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // === YouTube IFrame API Setup (เล่นปุ๊บ ซ่อนบาร์ / หยุดปุ๊บ โชว์บาร์) ===
+        function onYouTubeIframeAPIReady() {
+            document.querySelectorAll('.yt-container').forEach((container, index) => {
+                let videoId = container.getAttribute('data-video-id');
+                let playerId = 'yt-player-id-' + index;
+                let overlayId = 'yt-overlay-' + index;
+
+                // สร้าง Div เปล่าๆ ให้ API มาสิงร่าง
+                let playerDiv = document.createElement('div');
+                playerDiv.id = playerId;
+                playerDiv.className = "w-full h-full relative z-0";
+                container.insertBefore(playerDiv, container.firstChild);
+
+                new YT.Player(playerId, {
+                    height: '100%',
+                    width: '100%',
+                    videoId: videoId,
+                    playerVars: { 
+                        'rel': 0, // ไม่โชว์คลิปแนะนำจากช่องอื่นตอนจบ
+                        'modestbranding': 1 
+                    },
+                    events: {
+                        'onStateChange': function(event) {
+                            let overlay = document.getElementById(overlayId);
+                            if (!overlay) return;
+                            
+                            // event.data === 1 คือวิดีโอกำลังเล่น
+                            if (event.data === 1) {
+                                overlay.classList.remove('group-hover:opacity-100'); // ลบคำสั่ง Hover ทิ้ง
+                                overlay.style.opacity = '0'; // บังคับซ่อนทันที
+                            } 
+                            // event.data === 2 (หยุดชั่วคราว) หรือ 0 (เล่นจบแล้ว)
+                            else if (event.data === 2 || event.data === 0) {
+                                overlay.style.opacity = ''; // เคลียร์สไตล์บังคับ
+                                overlay.classList.add('group-hover:opacity-100'); // โชว์ Hover ตามปกติ
+                            }
+                        }
+                    }
+                });
+            });
+        }
+
+
+        // 1. Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => { preloader.style.display = 'none'; }, 500);
+            AOS.init({ once: true, offset: 50, duration: 800 });
+        });
+
+        // 2. Custom Cursor
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+        window.addEventListener('mousemove', (e) => {
+            if(cursorDot && cursorOutline) {
+                cursorDot.style.left = `${e.clientX}px`;
+                cursorDot.style.top = `${e.clientY}px`;
+                cursorOutline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 150, fill: 'forwards' });
+            }
+        });
+        document.querySelectorAll('a, button, .cursor-pointer, .image-trigger').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                if(cursorOutline) cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                if(cursorOutline) cursorOutline.style.borderColor = '#06b6d4';
+            });
+            el.addEventListener('mouseleave', () => {
+                if(cursorOutline) cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                if(cursorOutline) cursorOutline.style.borderColor = 'rgba(244, 63, 94, 0.5)';
+            });
+        });
+
+        // 3. Navbar Glass Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+                nav.style.background = 'rgba(9, 9, 11, 0.9)';
+            } else {
+                nav.classList.remove('shadow-lg');
+                nav.style.background = 'rgba(24, 24, 27, 0.6)';
+            }
+        });
+
+        // 4. Mobile Menu
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // 5. Typewriter Effect
+        const typedText = document.getElementById('typedRole');
+        const roles = ["Graphic Designer", "Video Editor", "AI Artist", "Content Creator"];
+        let roleIdx = 0, charIdx = 0, isDeleting = false;
+        function type() {
+            if(!typedText) return;
+            const current = roles[roleIdx];
+            typedText.textContent = isDeleting ? current.substring(0, charIdx--) : current.substring(0, charIdx++);
+            let speed = isDeleting ? 50 : 100;
+            if(!isDeleting && charIdx === current.length + 1) { speed = 2000; isDeleting = true; }
+            else if (isDeleting && charIdx === 0) { isDeleting = false; roleIdx = (roleIdx + 1) % roles.length; speed = 500; }
+            setTimeout(type, speed);
+        }
+        type();
+
+        // 6. 3D Tilt Card
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width/2;
+                const y = e.clientY - rect.top - rect.height/2;
+                card.style.transform = `perspective(1000px) rotateX(${-y/15}deg) rotateY(${x/15}deg) translateY(-5px)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+            });
+        });
+
+        // 7. Portfolio Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.portfolio-item');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-white/10', 'text-white');
+                    b.classList.add('bg-transparent', 'text-gray-400');
+                });
+                btn.classList.remove('bg-transparent', 'text-gray-400');
+                btn.classList.add('bg-white/10', 'text-white');
+                
+                const filter = btn.getAttribute('data-filter');
+                items.forEach(item => {
+                    if(filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.classList.remove('hide');
+                        setTimeout(() => item.style.opacity = '1', 50);
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(() => item.classList.add('hide'), 400);
+                    }
+                });
+            });
+        });
+
+        // 8. Image Modal (Lightbox) Logic
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModalBtn = document.getElementById('closeModal');
+        const imageTriggers = document.querySelectorAll('.image-trigger');
+
+        imageTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const fullImgSrc = trigger.getAttribute('data-full-image');
+                modalImage.src = fullImgSrc;
+                imageModal.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    imageModal.classList.remove('opacity-0');
+                    modalImage.classList.remove('scale-95');
+                    modalImage.classList.add('scale-100');
+                }, 10);
+            });
+        });
+
+        function closeLightbox() {
+            imageModal.classList.add('opacity-0');
+            modalImage.classList.remove('scale-100');
+            modalImage.classList.add('scale-95');
+            
+            setTimeout(() => {
+                imageModal.classList.add('hidden');
+                modalImage.src = '';
+            }, 300);
+        }
+
+        closeModalBtn.addEventListener('click', closeLightbox);
+        
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                closeLightbox();
+            }
+        });
+
+    </script>
+</body>
+</html>
