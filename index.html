@@ -152,33 +152,6 @@
             transform: translateY(-5px);
         }
 
-        /* Custom Cursor */
-        @media (min-width: 1024px) {
-            #cursor-dot {
-                width: 8px;
-                height: 8px;
-                background: #06b6d4;
-                position: fixed;
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 9999;
-                transform: translate(-50%, -50%);
-                transition: width 0.2s, height 0.2s;
-            }
-
-            #cursor-outline {
-                width: 40px;
-                height: 40px;
-                border: 1px solid rgba(244, 63, 94, 0.5);
-                position: fixed;
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 9998;
-                transform: translate(-50%, -50%);
-                transition: 0.15s ease-out;
-            }
-        }
-
         /* Portfolio Filter */
         .portfolio-item {
             transition: all 0.4s ease;
@@ -197,10 +170,6 @@
     <div id="preloader">
         <div class="loader-circle"></div>
     </div>
-
-    <!-- Custom Cursor -->
-    <div id="cursor-dot" class="hidden lg:block shadow-[0_0_10px_#06b6d4]"></div>
-    <div id="cursor-outline" class="hidden lg:block shadow-[0_0_20px_rgba(244,63,94,0.3)]"></div>
 
     <!-- Image Modal (Lightbox) -->
     <div id="imageModal"
@@ -244,23 +213,23 @@
         <!-- Mobile Menu -->
         <div id="mobileMenu"
             class="hidden absolute top-full left-0 w-full glass border-t border-white/10 flex flex-col p-4 space-y-4 text-center">
-            <a href="#home" class="text-gray-300">หน้าแรก</a>
-            <a href="#expertise" class="text-gray-300">ทักษะ</a>
-            <a href="#works" class="text-gray-300">ผลงาน</a>
-            <a href="#contact" class="text-brand-pink font-semibold">ติดต่อพูดคุย</a>
+            <a href="#home" class="mobile-link text-gray-300">หน้าแรก</a>
+            <a href="#expertise" class="mobile-link text-gray-300">ทักษะ</a>
+            <a href="#works" class="mobile-link text-gray-300">ผลงาน</a>
+            <a href="#contact" class="mobile-link text-brand-pink font-semibold">ติดต่อพูดคุย</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center pt-20 relative">
+    <section id="home" class="min-h-screen flex items-center pt-24 pb-12 relative">
         <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center">
             <div class="order-2 lg:order-1 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
 
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-6">
+                <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold leading-[1.2] md:leading-[1.1] mb-6">
                     สวัสดีครับ <br>
                     ผม<span class="text-gradient">Dream (NPXS)</span>
                 </h1>
-                <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto lg:mx-0">
+                <p class="text-gray-400 text-base md:text-lg mb-10 max-w-xl mx-auto lg:mx-0">
                     อายุ 19 ปี ผู้มีความหลงใหลในการออกแบบกราฟิก สร้างสรรค์โลโก้ สื่อมัลติมีเดีย
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -272,7 +241,7 @@
             </div>
 
             <div class="order-1 lg:order-2 flex justify-center" data-aos="zoom-in" data-aos-duration="1200">
-                <div class="relative w-72 h-72 md:w-96 md:h-96 tilt-card group cursor-pointer">
+                <div class="relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 tilt-card group cursor-pointer">
                     <!-- Rotating rings -->
                     <div
                         class="absolute inset-0 border border-dashed border-brand-cyan/40 rounded-full animate-[spin_15s_linear_infinite]">
@@ -295,14 +264,14 @@
     <section id="expertise" class="py-24 relative z-10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-16 text-center" data-aos="fade-up">
-                <h2 class="text-4xl font-bold mb-4">Professional <span class="text-gradient">Skills</span></h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Professional <span class="text-gradient">Skills</span></h2>
                 <p class="text-gray-400">ทักษะ ความเชี่ยวชาญ และซอฟต์แวร์ที่ใช้สร้างสรรค์ผลงาน</p>
             </div>
 
             <!-- Bento Grid Skills -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Skill 1 -->
-                <div class="bento-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+                <div class="bento-card p-6 md:p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
                     <div
                         class="w-12 h-12 rounded-xl bg-brand-cyan/10 text-brand-cyan flex items-center justify-center text-2xl mb-6">
                         <i class="fas fa-pen-nib"></i>
@@ -312,7 +281,7 @@
                     </p>
                 </div>
                 <!-- Skill 2 -->
-                <div class="bento-card p-8 rounded-3xl md:col-span-2 relative overflow-hidden group" data-aos="fade-up"
+                <div class="bento-card p-6 md:p-8 rounded-3xl md:col-span-2 relative overflow-hidden group" data-aos="fade-up"
                     data-aos-delay="200">
                     <div class="relative z-10">
                         <div
@@ -324,10 +293,10 @@
                             ตัดต่อสื่อมัลติมีเดีย และสร้างสรรค์แอนิเมชัน</p>
                     </div>
                     <i
-                        class="fas fa-film absolute -right-4 -bottom-4 text-9xl text-white/5 group-hover:scale-110 transition-transform"></i>
+                        class="fas fa-film absolute -right-4 -bottom-4 text-8xl md:text-9xl text-white/5 group-hover:scale-110 transition-transform"></i>
                 </div>
                 <!-- Skill 3 -->
-                <div class="bento-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="300">
+                <div class="bento-card p-6 md:p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="300">
                     <div
                         class="w-12 h-12 rounded-xl bg-brand-pink/10 text-brand-pink flex items-center justify-center text-2xl mb-6">
                         <i class="fas fa-camera"></i>
@@ -336,7 +305,7 @@
                     <p class="text-gray-400 text-sm">ถ่ายภาพและจัดแสงเพื่อนำเสนอเรื่องราวด้วยภาพที่โดดเด่น</p>
                 </div>
                 <!-- Skill 4 -->
-                <div class="bento-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="400">
+                <div class="bento-card p-6 md:p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="400">
                     <div
                         class="w-12 h-12 rounded-xl bg-emerald-400/10 text-emerald-400 flex items-center justify-center text-2xl mb-6">
                         <i class="fas fa-sliders-h"></i>
@@ -345,7 +314,7 @@
                     <p class="text-gray-400 text-sm">มิกซ์และมาสเตอริ่งเสียง ออกแบบระบบเสียงที่สมบูรณ์แบบ</p>
                 </div>
                 <!-- Skill 5 -->
-                <div class="bento-card p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="500">
+                <div class="bento-card p-6 md:p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="500">
                     <div
                         class="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center text-2xl mb-6">
                         <i class="fas fa-compact-disc"></i>
@@ -355,62 +324,62 @@
                 </div>
             </div>
 
-            <!-- Software Tools Section (เครื่องมือที่ใช้งานประจำ) -->
+            <!-- Software Tools Section -->
             <div class="mt-24 pt-16 border-t border-white/5" data-aos="fade-up">
                 <h3 class="text-sm font-semibold text-gray-400 text-center mb-10 tracking-wider">
                     เครื่องมือที่ใช้งานประจำ</h3>
-                <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+                <div class="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-10">
                     <!-- Photoshop -->
                     <div class="flex flex-col items-center gap-3 group cursor-default">
                         <div
-                            class="w-16 h-16 rounded-2xl border-[3px] border-[#31A8FF] bg-[#001E36] flex items-center justify-center text-3xl font-bold text-[#31A8FF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(49,168,255,0.2)]">
+                            class="w-14 h-14 md:w-16 md:h-16 rounded-2xl border-[3px] border-[#31A8FF] bg-[#001E36] flex items-center justify-center text-2xl md:text-3xl font-bold text-[#31A8FF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(49,168,255,0.2)]">
                             Ps</div>
-                        <span class="text-xs md:text-sm text-gray-300 font-medium">Photoshop</span>
+                        <span class="text-[10px] md:text-sm text-gray-300 font-medium">Photoshop</span>
                     </div>
                     <!-- Lightroom Classic -->
                     <div class="flex flex-col items-center gap-3 group cursor-default">
                         <div
-                            class="w-16 h-16 rounded-2xl border-[3px] border-[#74C0FF] bg-[#001E36] flex items-center justify-center text-3xl font-bold text-[#74C0FF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(116,192,255,0.2)]">
+                            class="w-14 h-14 md:w-16 md:h-16 rounded-2xl border-[3px] border-[#74C0FF] bg-[#001E36] flex items-center justify-center text-2xl md:text-3xl font-bold text-[#74C0FF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(116,192,255,0.2)]">
                             Lr</div>
-                        <span class="text-xs md:text-sm text-gray-300 font-medium">Lightroom Classic</span>
+                        <span class="text-[10px] md:text-sm text-gray-300 font-medium">Lightroom Classic</span>
                     </div>
                     <!-- Illustrator -->
                     <div class="flex flex-col items-center gap-3 group cursor-default">
                         <div
-                            class="w-16 h-16 rounded-2xl border-[3px] border-[#FF9A00] bg-[#330000] flex items-center justify-center text-3xl font-bold text-[#FF9A00] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(255,154,0,0.2)]">
+                            class="w-14 h-14 md:w-16 md:h-16 rounded-2xl border-[3px] border-[#FF9A00] bg-[#330000] flex items-center justify-center text-2xl md:text-3xl font-bold text-[#FF9A00] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(255,154,0,0.2)]">
                             Ai</div>
-                        <span class="text-xs md:text-sm text-gray-300 font-medium">Illustrator</span>
+                        <span class="text-[10px] md:text-sm text-gray-300 font-medium">Illustrator</span>
                     </div>
                     <!-- Premiere Pro -->
                     <div class="flex flex-col items-center gap-3 group cursor-default">
                         <div
-                            class="w-16 h-16 rounded-2xl border-[3px] border-[#E99EEF] bg-[#2E004F] flex items-center justify-center text-3xl font-bold text-[#E99EEF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(233,158,239,0.2)]">
+                            class="w-14 h-14 md:w-16 md:h-16 rounded-2xl border-[3px] border-[#E99EEF] bg-[#2E004F] flex items-center justify-center text-2xl md:text-3xl font-bold text-[#E99EEF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(233,158,239,0.2)]">
                             Pr</div>
-                        <span class="text-xs md:text-sm text-gray-300 font-medium">Premiere Pro</span>
+                        <span class="text-[10px] md:text-sm text-gray-300 font-medium">Premiere Pro</span>
                     </div>
                     <!-- After Effects -->
                     <div class="flex flex-col items-center gap-3 group cursor-default">
                         <div
-                            class="w-16 h-16 rounded-2xl border-[3px] border-[#9999FF] bg-[#00005C] flex items-center justify-center text-3xl font-bold text-[#9999FF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(153,153,255,0.2)]">
+                            class="w-14 h-14 md:w-16 md:h-16 rounded-2xl border-[3px] border-[#9999FF] bg-[#00005C] flex items-center justify-center text-2xl md:text-3xl font-bold text-[#9999FF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(153,153,255,0.2)]">
                             Ae</div>
-                        <span class="text-xs md:text-sm text-gray-300 font-medium">After Effects</span>
+                        <span class="text-[10px] md:text-sm text-gray-300 font-medium">After Effects</span>
                     </div>
                     <!-- FL Studio -->
                     <div class="flex flex-col items-center gap-3 group cursor-default">
                         <div
-                            class="w-16 h-16 rounded-2xl border-[3px] border-[#FF5B00] bg-black flex flex-col items-center justify-center text-[#FF5B00] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(255,91,0,0.2)]">
-                            <img src="images/Fl_studio_logo.png" alt="FL Studio" class="w-10 h-10 object-contain">
+                            class="w-14 h-14 md:w-16 md:h-16 rounded-2xl border-[3px] border-[#FF5B00] bg-black flex flex-col items-center justify-center text-[#FF5B00] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(255,91,0,0.2)]">
+                            <img src="images/Fl_studio_logo.png" alt="FL Studio" class="w-8 h-8 md:w-10 md:h-10 object-contain">
                         </div>
-                        <span class="text-xs md:text-sm text-gray-300 font-medium">FL Studio</span>
+                        <span class="text-[10px] md:text-sm text-gray-300 font-medium">FL Studio</span>
                     </div>
                     <!-- Fender Studio Pro -->
                     <div class="flex flex-col items-center gap-3 group cursor-default">
                         <div
-                            class="w-16 h-16 rounded-2xl border-[3px] border-[#00FFFF] bg-black flex flex-col items-center justify-center text-[#00FFFF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(0,255,255,0.2)]">
+                            class="w-14 h-14 md:w-16 md:h-16 rounded-2xl border-[3px] border-[#00FFFF] bg-black flex flex-col items-center justify-center text-[#00FFFF] transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_10px_20px_rgba(0,255,255,0.2)]">
                             <img src="images/fender_studio_pro_app_icon.png" alt="Fender Studio Pro"
-                                class="w-10 h-10 object-contain rounded-xl">
+                                class="w-8 h-8 md:w-10 md:h-10 object-contain rounded-xl">
                         </div>
-                        <span class="text-xs md:text-sm text-gray-300 font-medium">Fender Studio Pro</span>
+                        <span class="text-[10px] md:text-sm text-gray-300 font-medium text-center w-16 md:w-auto leading-tight md:leading-normal">Fender Studio Pro</span>
                     </div>
                 </div>
             </div>
@@ -421,18 +390,18 @@
     <!-- Portfolio Section -->
     <section id="works" class="py-24 relative border-t border-white/5 bg-brand-card/30">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-10 text-center" data-aos="fade-up">Selected <span
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center" data-aos="fade-up">Selected <span
                     class="text-gradient">Works</span></h2>
 
             <!-- Grid ผลงาน -->
             <div class="grid md:grid-cols-2 gap-8">
 
                 <!-- ชิ้นที่ 1: วิดีโอ YouTube ของคุณ -->
-                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10"
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-video shadow-lg border border-white/10"
                     data-category="video" data-aos="fade-up">
 
                     <!-- ตัววิดีโอ YouTube -->
-                    <iframe id="yt-player-0" class="yt-iframe w-full h-full relative z-0 "
+                    <iframe id="yt-player-0" class="yt-iframe w-full h-full relative z-0"
                         src="https://www.youtube.com/embed/MucBW8knTTA?enablejsapi=1&modestbranding=1&rel=0"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -440,23 +409,22 @@
                     </iframe>
 
                     <!-- แถบ Overlay ที่จะโชว์ตอนเอาเมาส์ชี้ -->
-                    <!-- หมายเหตุ: pointer-events-none จะทำให้เราคลิกทะลุข้อความไปกดปุ่ม Play วิดีโอได้ -->
                     <div id="yt-overlay-0"
-                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
-                        <span class="text-brand-purple text-sm font-bold mb-2"><i class="fab fa-youtube mr-1"></i>
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 md:p-8 pointer-events-none z-10">
+                        <span class="text-brand-purple text-xs md:text-sm font-bold mb-1 md:mb-2"><i class="fab fa-youtube mr-1"></i>
                             กดปุ่มกลางเพื่อเล่น</span>
-                        <h3 class="text-2xl font-bold text-white">งาน Motion และ Graphic Design
+                        <h3 class="text-lg md:text-2xl font-bold text-white leading-tight">งาน Motion และ Graphic Design
                             YOUNGOHM - เจิดจรัส (VER.ไทบ้าน) Cover by Bookkee</h3>
-                        <p class="text-gray-300 text-sm mt-2">หมวดหมู่วิดีโอ</p>
+                        <p class="text-gray-300 text-xs md:text-sm mt-2">หมวดหมู่วิดีโอ</p>
                     </div>
 
                 </div>
                 <!-- ชิ้นที่ 2: วิดีโอ YouTube ของคุณ -->
-                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10"
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-video shadow-lg border border-white/10"
                     data-category="video" data-aos="fade-up">
 
                     <!-- ตัววิดีโอ YouTube -->
-                    <iframe id="yt-player-0" class="yt-iframe w-full h-full relative z-0 "
+                    <iframe id="yt-player-1" class="yt-iframe w-full h-full relative z-0"
                         src="https://www.youtube.com/embed/taHO5FKRs74?si=jYBBZ-z7rhFrqhQK" title="YouTube video player"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -464,23 +432,22 @@
                     </iframe>
 
                     <!-- แถบ Overlay ที่จะโชว์ตอนเอาเมาส์ชี้ -->
-                    <!-- หมายเหตุ: pointer-events-none จะทำให้เราคลิกทะลุข้อความไปกดปุ่ม Play วิดีโอได้ -->
-                    <div id="yt-overlay-0"
-                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
-                        <span class="text-brand-purple text-sm font-bold mb-2"><i class="fab fa-youtube mr-1"></i>
+                    <div id="yt-overlay-1"
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 md:p-8 pointer-events-none z-10">
+                        <span class="text-brand-purple text-xs md:text-sm font-bold mb-1 md:mb-2"><i class="fab fa-youtube mr-1"></i>
                             กดปุ่มกลางเพื่อเล่น</span>
-                        <h3 class="text-2xl font-bold text-white">งาน Videography
+                        <h3 class="text-lg md:text-2xl font-bold text-white leading-tight">งาน Videography
                             พิธีมอบประกาศนียบัตร Cambridge 2026</h3>
-                        <p class="text-gray-300 text-sm mt-2">หมวดหมู่วิดีโอ</p>
+                        <p class="text-gray-300 text-xs md:text-sm mt-2">หมวดหมู่วิดีโอ</p>
                     </div>
 
                 </div>
                 <!-- ชิ้นที่ 3: วิดีโอ YouTube ของคุณ -->
-                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10"
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-video shadow-lg border border-white/10"
                     data-category="video" data-aos="fade-up">
 
                     <!-- ตัววิดีโอ YouTube -->
-                    <iframe id="yt-player-0" class="yt-iframe w-full h-full relative z-0 "
+                    <iframe id="yt-player-2" class="yt-iframe w-full h-full relative z-0"
                         src="https://www.youtube.com/embed/UXU_Q5jEmm4?si=QvPN-yEYXg3L7uK2" title="YouTube video player"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -488,37 +455,36 @@
                     </iframe>
 
                     <!-- แถบ Overlay ที่จะโชว์ตอนเอาเมาส์ชี้ -->
-                    <!-- หมายเหตุ: pointer-events-none จะทำให้เราคลิกทะลุข้อความไปกดปุ่ม Play วิดีโอได้ -->
-                    <div id="yt-overlay-0"
-                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 pointer-events-none z-10">
-                        <span class="text-brand-purple text-sm font-bold mb-2"><i class="fab fa-youtube mr-1"></i>
+                    <div id="yt-overlay-2"
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 md:p-8 pointer-events-none z-10">
+                        <span class="text-brand-purple text-xs md:text-sm font-bold mb-1 md:mb-2"><i class="fab fa-youtube mr-1"></i>
                             กดปุ่มกลางเพื่อเล่น</span>
-                        <h3 class="text-2xl font-bold text-white">งาน Motion Sound Engineering และ Remixer
+                        <h3 class="text-lg md:text-2xl font-bold text-white leading-tight">งาน Motion Sound Engineering และ Remixer
                             เลิกกั๊กแล้วรักก่อน (RED FLAG) - NEW CHAYAPAK ทูลกระหม่อม Cover [ NTP RMX ] Ver. 3
                             ช่าพาเพลิน </h3>
-                        <p class="text-gray-300 text-sm mt-2">หมวดหมู่วิดีโอ</p>
+                        <p class="text-gray-300 text-xs md:text-sm mt-2">หมวดหมู่วิดีโอ</p>
                     </div>
 
                 </div>
                 <!-- ชิ้นที่ 4: ภาพผลงาน -->
-                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[4/3] shadow-lg border border-white/10"
+                <div class="portfolio-item group relative overflow-hidden rounded-3xl aspect-video shadow-lg border border-white/10"
                     data-category="design" data-aos="fade-up">
 
                     <img src="images/NPXS25580125_43.jpg" alt="Work"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
 
                     <!-- พื้นหลัง Overlay ตอนเอาเมาส์ชี้ -->
-                    <div id="yt-overlay-2"
-                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 z-10">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 md:p-8 z-10">
 
-                        <h3 class="text-2xl font-bold text-white mb-1">DREAM PHOTO</h3>
-                        <p class="text-gray-300 text-sm mb-4">Photography</p>
+                        <h3 class="text-lg md:text-2xl font-bold text-white mb-1">DREAM PHOTO</h3>
+                        <p class="text-gray-300 text-xs md:text-sm mb-4">Photography</p>
 
                         <!-- คอนเทนเนอร์ปุ่ม -->
                         <div class="flex">
                             <!-- ปุ่มลิงก์ไปยังเว็บไซต์ -->
                             <a href="https://ntpremix.x2finity.xyz/" target="_blank"
-                                class="px-5 py-2 bg-brand-pink text-white text-sm font-semibold rounded-full shadow-[0_0_15px_rgba(244,63,94,0.4)] hover:bg-brand-pink/80 transition-all flex items-center hover:-translate-y-1">
+                                class="px-5 py-2 bg-brand-pink text-white text-xs md:text-sm font-semibold rounded-full shadow-[0_0_15px_rgba(244,63,94,0.4)] hover:bg-brand-pink/80 transition-all flex items-center hover:-translate-y-1">
                                 <i class="fas fa-external-link-alt mr-2"></i> ดูผลงานเพิ่ม
                             </a>
                         </div>
@@ -526,28 +492,28 @@
                 </div>
                 <!-- ชิ้นที่ 5: แบบทำเป็นปุ่มลิงก์ไปยัง Facebook Reel -->
                 <a href="https://www.facebook.com/reel/24130453133249118" target="_blank"
-                    class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[9/16] md:aspect-[4/3] shadow-lg border border-white/10 block cursor-pointer"
+                    class="portfolio-item group relative overflow-hidden rounded-3xl aspect-[9/16] md:aspect-video shadow-lg border border-white/10 block cursor-pointer"
                     data-category="video" data-aos="fade-up">
 
-                    <!-- รูปภาพหน้าปก (ดึงภาพจากโฟลเดอร์ images ของคุณเอง) -->
+                    <!-- รูปภาพหน้าปก -->
                     <img src="images/525740845_1349378083855472_4988593617756336644_n.jpg" alt="Facebook Reel Cover"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
 
                     <!-- แถบ Overlay พื้นหลังดำๆ ด้านล่าง -->
                     <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8 z-10">
-                        <span class="text-[#1877F2] text-sm font-bold mb-2"><i class="fab fa-facebook mr-1"></i>
+                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 md:p-8 z-10">
+                        <span class="text-[#1877F2] text-xs md:text-sm font-bold mb-1 md:mb-2"><i class="fab fa-facebook mr-1"></i>
                             คลิกเพื่อดูบน Facebook</span>
-                        <h3 class="text-2xl font-bold text-white">งาน Motion,Edit Video,Record voice,Edit voice นโยบาย
+                        <h3 class="text-lg md:text-2xl font-bold text-white leading-tight">งาน Motion,Edit Video,Record voice,Edit voice นโยบาย
                             อวท.วสวธ.2569 1️⃣ เบอร์ 1 นางสาวปาณชีวา เปรมจันทร์วงษ์ ปวส.1/4 </h3>
-                        <p class="text-gray-300 text-sm mt-2">หมวดหมู่วิดีโอ</p>
+                        <p class="text-gray-300 text-xs md:text-sm mt-2">หมวดหมู่วิดีโอ</p>
                     </div>
 
                     <!-- ปุ่ม Play ตรงกลางให้ดูเหมือนวิดีโอ -->
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
                         <div
-                            class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-[#1877F2] transition-colors duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                            <i class="fas fa-play text-white text-2xl ml-1"></i>
+                            class="w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-[#1877F2] transition-colors duration-300 shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                            <i class="fas fa-play text-white text-xl md:text-2xl ml-1"></i>
                         </div>
                     </div>
                 </a>
@@ -561,31 +527,28 @@
         <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-pink via-brand-purple to-brand-cyan">
         </div>
         <div class="max-w-4xl mx-auto px-6 text-center" data-aos="zoom-in">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">Let's Work <span class="text-gradient">Together</span></h2>
-            <p class="text-gray-400 mb-12">ติดตามผลงาน หรือ ติดต่องานผ่านช่องทางด้านล่างครับ</p>
+            <h2 class="text-3xl md:text-5xl font-bold mb-4 md:mb-6">Let's Work <span class="text-gradient">Together</span></h2>
+            <p class="text-gray-400 mb-10 md:mb-12 text-sm md:text-base">ติดตามผลงาน หรือ ติดต่องานผ่านช่องทางด้านล่างครับ</p>
 
-            <div class="flex flex-wrap justify-center gap-4">
-                <!-- ใส่ลิ้งก์ Discord ของคุณตรงคำว่า ใส่ลิ้งก์ที่นี่ -->
+            <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-4">
                 <a href="https://discord.com/users/614419131512389642" target="_blank"
-                    class="px-8 py-4 rounded-full bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold transition-all hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(88,101,242,0.4)] flex items-center gap-3">
+                    class="px-8 py-4 rounded-full bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold transition-all hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(88,101,242,0.4)] flex items-center justify-center gap-3 w-full sm:w-auto">
                     <i class="fab fa-discord text-xl"></i> Discord
                 </a>
 
-                <!-- ใส่ลิ้งก์ Facebook ของคุณตรงคำว่า ใส่ลิ้งก์ที่นี่ -->
                 <a href="https://www.facebook.com/NPXS0123zz/" target="_blank"
-                    class="px-8 py-4 rounded-full bg-[#1877F2] hover:bg-[#166FE5] text-white font-bold transition-all hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(24,119,242,0.4)] flex items-center gap-3">
+                    class="px-8 py-4 rounded-full bg-[#1877F2] hover:bg-[#166FE5] text-white font-bold transition-all hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(24,119,242,0.4)] flex items-center justify-center gap-3 w-full sm:w-auto">
                     <i class="fab fa-facebook text-xl"></i> Facebook
                 </a>
 
-                <!-- ใส่ลิ้งก์ Instagram ของคุณตรงคำว่า ใส่ลิ้งก์ที่นี่ -->
                 <a href="https://www.instagram.com/ntp_rmx/" target="_blank"
-                    class="px-8 py-4 rounded-full bg-gradient-to-tr from-[#FD1D1D] via-[#E1306C] to-[#833AB4] hover:opacity-90 text-white font-bold transition-all hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(225,48,108,0.4)] flex items-center gap-3">
+                    class="px-8 py-4 rounded-full bg-gradient-to-tr from-[#FD1D1D] via-[#E1306C] to-[#833AB4] hover:opacity-90 text-white font-bold transition-all hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(225,48,108,0.4)] flex items-center justify-center gap-3 w-full sm:w-auto">
                     <i class="fab fa-instagram text-xl"></i> Instagram
                 </a>
             </div>
         </div>
 
-        <div class="mt-24 text-center border-t border-white/5 pt-8 text-sm text-gray-500">
+        <div class="mt-24 text-center border-t border-white/5 pt-8 text-xs md:text-sm text-gray-500">
             &copy; 2026 NPXS Dream Graphic Portfolio. All rights reserved.
         </div>
     </section>
@@ -598,7 +561,6 @@
         window.onYouTubeIframeAPIReady = function () {
             document.querySelectorAll('.yt-iframe').forEach((iframe) => {
                 let playerId = iframe.id;
-                // Find the overlay specifically within the same portfolio-item container
                 let container = iframe.closest('.portfolio-item');
                 let overlay = container.querySelector('[id^="yt-overlay-"]');
 
@@ -628,28 +590,7 @@
             AOS.init({ once: true, offset: 50, duration: 800 });
         });
 
-        // 2. Custom Cursor
-        const cursorDot = document.getElementById('cursor-dot');
-        const cursorOutline = document.getElementById('cursor-outline');
-        window.addEventListener('mousemove', (e) => {
-            if (cursorDot && cursorOutline) {
-                cursorDot.style.left = `${e.clientX}px`;
-                cursorDot.style.top = `${e.clientY}px`;
-                cursorOutline.animate({ left: `${e.clientX}px`, top: `${e.clientY}px` }, { duration: 150, fill: 'forwards' });
-            }
-        });
-        document.querySelectorAll('a, button, .cursor-pointer, .image-trigger').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                if (cursorOutline) cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                if (cursorOutline) cursorOutline.style.borderColor = '#06b6d4';
-            });
-            el.addEventListener('mouseleave', () => {
-                if (cursorOutline) cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                if (cursorOutline) cursorOutline.style.borderColor = 'rgba(244, 63, 94, 0.5)';
-            });
-        });
-
-        // 3. Navbar Glass Effect
+        // 2. Navbar Glass Effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -661,14 +602,19 @@
             }
         });
 
-        // 4. Mobile Menu
+        // 3. Mobile Menu Toggle
         document.getElementById('mobileMenuBtn').addEventListener('click', () => {
             document.getElementById('mobileMenu').classList.toggle('hidden');
         });
 
+        // Add auto-close for Mobile Menu links (UX Improvement)
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
+        });
 
-
-        // 6. 3D Tilt Card
+        // 4. 3D Tilt Card
         document.querySelectorAll('.tilt-card').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const rect = card.getBoundingClientRect();
@@ -681,7 +627,7 @@
             });
         });
 
-        // 7. Portfolio Filter
+        // 5. Portfolio Filter
         const filterBtns = document.querySelectorAll('.filter-btn');
         const items = document.querySelectorAll('.portfolio-item');
         filterBtns.forEach(btn => {
@@ -706,7 +652,7 @@
             });
         });
 
-        // 8. Image Modal (Lightbox) Logic
+        // 6. Image Modal (Lightbox) Logic
         const imageModal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
         const closeModalBtn = document.getElementById('closeModal');
@@ -744,7 +690,6 @@
                 closeLightbox();
             }
         });
-
     </script>
 </body>
 
